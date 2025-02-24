@@ -7,12 +7,18 @@ import lombok.*;
 
 import java.util.Base64;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Data // Lombok: Generates getters, setters, equals, hashCode, and toString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
     
+    @Autowired
+    @JsonIgnore
+    private Store st;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +32,8 @@ public class Product {
     @Column(nullable = false)
     private double price;
 
+    private String store = st.getName();
+
      // Prevent sending raw bytes in JSON response
     @Getter @Setter
     @JsonIgnore
@@ -35,8 +43,9 @@ public class Product {
         return photo != null ? Base64.getEncoder().encodeToString(photo) : null;
     }
 
+    
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)  // Foreign key linking to Store
     @JsonIgnore
-    private Store store;
+    private Store s;
 }
