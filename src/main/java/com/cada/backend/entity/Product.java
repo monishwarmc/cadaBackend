@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @AllArgsConstructor
 public class Product {
     
-    @Autowired
     @JsonIgnore
     private Store st;
 
