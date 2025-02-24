@@ -1,15 +1,15 @@
 package com.cada.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.Base64;
 
-
 @Entity
-@Data // Lombok: Generates getters, setters, equals, hashCode, and toString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
@@ -27,25 +27,23 @@ public class Product {
     @Column(nullable = false)
     private double price;
 
-    
-     // Prevent sending raw bytes in JSON response
-    @Getter @Setter
-    @JsonIgnore
-    private byte[] photo;
-    @JsonIgnore
-    public String getPhotoBase64() {
-        return photo != null ? Base64.getEncoder().encodeToString(photo) : null;
-    }
-
-    
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false)  // Foreign key linking to Store
+    @JoinColumn(name = "store_id", nullable = false)
     @JsonIgnore
     private Store s;
 
+    // JSON response should include store name
+    @JsonProperty("storeName")
     public String getStoreName() {
         return s != null ? s.getName() : null;
     }
 
-    public String store = getStoreName();
+    @Getter @Setter
+    @JsonIgnore
+    private byte[] photo;
+
+    @JsonIgnore
+    public String getPhotoBase64() {
+        return photo != null ? Base64.getEncoder().encodeToString(photo) : null;
+    }
 }
