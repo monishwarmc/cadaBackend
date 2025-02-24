@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    
-    @JsonIgnore
-    private Store st;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +28,7 @@ public class Product {
     @Column(nullable = false)
     private double price;
 
-    private String store = st.getName();
-
+    
      // Prevent sending raw bytes in JSON response
     @Getter @Setter
     @JsonIgnore
@@ -47,4 +43,6 @@ public class Product {
     @JoinColumn(name = "store_id", nullable = false)  // Foreign key linking to Store
     @JsonIgnore
     private Store s;
+
+    private String store = s.getName();
 }
