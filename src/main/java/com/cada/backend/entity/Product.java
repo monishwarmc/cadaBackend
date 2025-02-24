@@ -7,7 +7,6 @@ import lombok.*;
 
 import java.util.Base64;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Data // Lombok: Generates getters, setters, equals, hashCode, and toString
@@ -44,5 +43,9 @@ public class Product {
     @JsonIgnore
     private Store s;
 
-    private String store = s.getName();
+    public String getStoreName() {
+        return s != null ? s.getName() : null;
+    }
+
+    public String store = getStoreName();
 }
