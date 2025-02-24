@@ -30,12 +30,16 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)
     @JsonIgnore
-    private Store s;
+    private Store store;
 
-    // JSON response should include store name
+    // Setter method for store
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
     @JsonProperty("storeName")
     public String getStoreName() {
-        return s != null ? s.getName() : null;
+        return store != null ? store.getName() : null;
     }
 
     @Getter @Setter
