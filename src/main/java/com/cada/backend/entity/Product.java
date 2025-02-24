@@ -36,5 +36,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "store_id", nullable = false)  // Foreign key linking to Store
+    @JsonIgnore
     private Store store;
 }
