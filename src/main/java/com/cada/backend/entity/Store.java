@@ -54,7 +54,6 @@ public class Store {
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
     @Getter @Setter
-    @JsonIgnore
     private List<Product> products = new ArrayList<>();
 
     public Store(String name, String location, String phoneNumber) {
