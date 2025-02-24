@@ -26,10 +26,10 @@ public class Product {
     @Column(nullable = false)
     private double price;
 
-    @JsonIgnore // Prevent sending raw bytes in JSON response
+     // Prevent sending raw bytes in JSON response
     @Getter @Setter
     private byte[] photo;
-
+    @JsonIgnore
     public String getPhotoBase64() {
         return photo != null ? Base64.getEncoder().encodeToString(photo) : null;
     }

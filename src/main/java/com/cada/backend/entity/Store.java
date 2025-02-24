@@ -43,10 +43,10 @@ public class Store {
     @Getter @Setter
     private String phoneNumber;
 
-    @JsonIgnore
+    
     @Getter @Setter
     private byte[] photo;
-
+    @JsonIgnore
     public String getPhotoBase64() {
         return photo != null ? Base64.getEncoder().encodeToString(photo) : null;
     }
