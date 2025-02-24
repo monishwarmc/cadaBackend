@@ -45,6 +45,7 @@ public class Store {
 
     
     @Getter @Setter
+    @JsonIgnore
     private byte[] photo;
     @JsonIgnore
     public String getPhotoBase64() {

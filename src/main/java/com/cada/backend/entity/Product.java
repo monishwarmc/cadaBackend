@@ -28,6 +28,7 @@ public class Product {
 
      // Prevent sending raw bytes in JSON response
     @Getter @Setter
+    @JsonIgnore
     private byte[] photo;
     @JsonIgnore
     public String getPhotoBase64() {
