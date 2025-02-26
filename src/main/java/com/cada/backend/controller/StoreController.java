@@ -17,10 +17,9 @@ import java.util.Optional;/*  */
 
 import org.springframework.http.MediaType;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("store")
-@CrossOrigin
 public class StoreController {
     
     @Autowired
